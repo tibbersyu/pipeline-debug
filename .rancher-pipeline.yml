@@ -1,20 +1,12 @@
 stages:
 - name: build
   steps:
-  - runScriptConfig:
-      image: golang:1.11
-      shellScript: |-
-        mkdir -p /go/src
-        ln -s `pwd` /go/src/lingwei
-        cd /go/src/lingwei
-        CGO_ENABLED=1 GOOS=windows GOARCH=amd64 go build -o lingwei main.go
-- name: publish
-  steps:
-  - publishImageConfig:
-      dockerfilePath: ./Dockerfile
-      buildContext: .
-      tag: tibbersyu/pipeline-debug:v1.0
-    env:
-      PLUGIN_DEBUG: "true"
+  - applyAppConfig:
+      catalogTemplate: p-wpsrj:my-mychart
+      version: 0.1.0
+      answers:
+        service.port: "8080"
+      name: test
+      targetNamespace: default
 timeout: 60
 notification: {}
