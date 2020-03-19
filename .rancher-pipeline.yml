@@ -3,7 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: golang:1.13.2
-      shellScript: ' go build -o pipeline-test-demo main.go'
+      shellScript: ' go build -o lingwei main.go'
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
