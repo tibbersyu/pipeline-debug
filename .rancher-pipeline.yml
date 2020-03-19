@@ -4,5 +4,21 @@ stages:
   - runScriptConfig:
       image: golang:1.13.2
       shellScript: ' go build -o pipeline-test-demo main.go'
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: localtest
+      pushRemote: true
+      registry: index.docker.io
+- name: Deploy
+  steps:
+  - applyAppConfig:
+      catalogTemplate: p-wpsrj:my-common-java
+      version: 1.0.0
+      answers:
+        image.port: "8081"
+        service.port: "8081"
+      name: mytest
+      targetNamespace: default
 timeout: 60
 notification: {}
