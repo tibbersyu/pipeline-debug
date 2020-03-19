@@ -2,10 +2,10 @@ stages:
 - name: build
   steps:
   - applyAppConfig:
-      catalogTemplate: p-wpsrj:my-mychart
-      version: 0.1.0
+      catalogTemplate: p-wpsrj:my-common-java
+      version: 1.0.0
       answers:
-        service.port: "8080"
+        service.port: "8081"
       name: test
       targetNamespace: default
 timeout: 60
