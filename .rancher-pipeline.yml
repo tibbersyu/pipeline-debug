@@ -1,12 +1,8 @@
 stages:
 - name: build
   steps:
-  - applyAppConfig:
-      catalogTemplate: p-wpsrj:my-common-java
-      version: 1.0.0
-      answers:
-        service.port: "8081"
-      name: test
-      targetNamespace: default
+  - runScriptConfig:
+      image: golang:1.13.2
+      shellScript: ' go build -o pipeline-test-demo main.go'
 timeout: 60
 notification: {}
