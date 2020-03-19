@@ -17,6 +17,9 @@ stages:
       version: 1.0.0
       answers:
         image.port: "8081"
+        image.tag: ${IMAGE_TAG}
+        name: ${APP_NAME}
+        namespace: ${TARGET_NAMESPACE}
         service.port: "8081"
       name: mytest
       targetNamespace: default
